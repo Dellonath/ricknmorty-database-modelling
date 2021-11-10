@@ -1,33 +1,45 @@
-CREATE TABLE Localicazao(
-	ID SERIAL PRIMARY KEY,
-	nome VARCHAR(255) NOT NULL,
-	tipo VARCHAR(255) NOT NULL,
-	dimensao VARCHAR(255) NOT NULL
+CREATE TABLE Location(
+	ID INT PRIMARY KEY,
+	name VARCHAR(64) NOT NULL,
+	type VARCHAR(64),
+	dimension VARCHAR(64),
+	created_at VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE Personagem(
-	ID SERIAL PRIMARY KEY,
-	nome VARCHAR(255) NOT NULL,
-	status VARCHAR(255) NOT NULL,
-	especie VARCHAR(255) NOT NULL,
-	subespecie VARCHAR(255) NOT NULL,
-	genero VARCHAR(255) NOT NULL,
-	id_origem INT NOT NULL,
-	FOREIGN KEY (id_origem) REFERENCES Localicazao(ID)
+CREATE TABLE Episode(
+	ID INT PRIMARY KEY,
+	name VARCHAR(64) NOT NULL,
+	air_date VARCHAR(64),
+	episode_code VARCHAR(64),
+	created_at VARCHAR(64) NOT NULL
 );
 
-CREATE TABLE Episodio(
-	ID SERIAL PRIMARY KEY,
-	nome VARCHAR(255) NOT NULL,
-	data_exibicao VARCHAR(255) NOT NULL,
-	codigo_exibicao VARCHAR(255) NOT NULL
+CREATE TYPE type_character AS ENUM('Alive', 'Dead', 'unknown');
+CREATE TYPE type_gender AS ENUM('Female', 'Male', 'Genderless', 'unknown');
+CREATE TABLE Character(
+	ID INT PRIMARY KEY,
+	name VARCHAR(64) NOT NULL,
+	status type_character,
+	specie VARCHAR(64),
+	subspecies VARCHAR(64),
+	gender type_gender,
+	id_origin INT,
+	id_last_location INT,
+	created_at VARCHAR(64) NOT NULL,
+	FOREIGN KEY (id_origin) REFERENCES Location(ID),
+	FOREIGN KEY (id_last_location) REFERENCES Location(ID)
 );
 
-CREATE TABLE Aparece(
+CREATE TABLE Appear(
 	ID SERIAL PRIMARY KEY,
-	ID_personagem INT NOT NULL,
-	ID_episodio INT NOT NULL,
-	FOREIGN KEY (ID_personagem) REFERENCES Personagem(ID),
-	FOREIGN KEY (ID_episodio) REFERENCES Episodio(ID),
-	UNIQUE(ID_personagem, ID_episodio)
+	character_id INT NOT NULL,
+	episode_id INT NOT NULL,
+	FOREIGN KEY (character_id) REFERENCES Character(ID),
+	FOREIGN KEY (episode_id) REFERENCES Episode(ID),
+	UNIQUE(character_id, episode_id)
 );
+
+SELECT * FROM Character;
+SELECT * FROM Location;
+SELECT * FROM Episode;
+SELECT * FROM Appear;
