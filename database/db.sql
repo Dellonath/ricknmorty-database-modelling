@@ -38,8 +38,3 @@ CREATE TABLE Appear(
 	FOREIGN KEY (episode_id) REFERENCES Episode(ID),
 	UNIQUE(character_id, episode_id)
 );
-
-SELECT * FROM Character;
-SELECT * FROM Location;
-SELECT * FROM Episode;
-SELECT * FROM Appear;
