@@ -15,13 +15,12 @@ class LocationExtractor:
             data['id'],         # the id of the location
             data['name'],       # the name of the location
             data['type'] if type(data['type']) != '' else 'unknown', # the type of the location
-            data['dimension'],  # the dimension in which the location is located
-            data['created']     # time at which the location was created in the database
+            data['dimension']   # the dimension in which the location is located
         )
 
         return row                                    
 
-    def insert_row(self, values_sql, query = 'INSERT INTO Location VALUES (%s, %s, %s, %s, %s);'):
+    def insert_row(self, values_sql, query = 'INSERT INTO Location VALUES (%s, %s, %s, %s);'):
 
         connection = psycopg2.connect(self.__conn)
         session = connection.cursor()

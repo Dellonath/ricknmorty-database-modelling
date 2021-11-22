@@ -18,7 +18,6 @@ class CharacterExtractor:
             data['species'],                                        # the species of the character  
             data['type'] if data['type'] != '' else None,           # the type or subspecies of the character
             data['gender'],                                         # the gender of the character ('Female', 'Male', 'Genderless' or 'unknown')
-            data['created'],                                        # time at which the character was created in the database
             int(data['location']['url'].split('/')[-1]) if data['location']['url'].split('/')[-1] != '' else None,            # name and link to the character's last known location endpoint
             int(data['origin']['url'].split('/')[-1]) if data['origin']['url'].split('/')[-1] != '' else None,   # the name and link to the character's origin location
             [int(epId.split('/')[-1]) for epId in data['episode']]  # list of episodes in which this character appeared
@@ -27,7 +26,7 @@ class CharacterExtractor:
 
         return row                                    
 
-    def insert_row(self, values_sql, query = 'INSERT INTO Character VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);'):
+    def insert_row(self, values_sql, query = 'INSERT INTO Character VALUES (%s, %s, %s, %s, %s, %s, %s, %s);'):
 
         connection = psycopg2.connect(self.__conn)
         session = connection.cursor()

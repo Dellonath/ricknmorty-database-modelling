@@ -15,13 +15,12 @@ class EpisodeExtractor:
             data['id'],         # the id of the episode
             data['name'],       # the name of the episode
             data['air_date'],   # the air date of the episode
-            data['episode'],    # the code of the episode
-            data['created']     # time at which the episode was created in the database
+            data['episode']     # the code of the episode
         )
 
         return row                                    
 
-    def insert_row(self, values_sql, query = 'INSERT INTO Episode VALUES (%s, %s, %s, %s, %s);'):
+    def insert_row(self, values_sql, query = 'INSERT INTO Episode VALUES (%s, %s, %s, %s);'):
         
         connection = psycopg2.connect(self.__conn)
         session = connection.cursor()
