@@ -3,7 +3,7 @@ CREATE TABLE Location(
     name VARCHAR(64) NOT NULL,
     type VARCHAR(64),
     dimension VARCHAR(64),
-    created_at VARCHAR(64) NOT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Episode(
@@ -11,7 +11,7 @@ CREATE TABLE Episode(
     name VARCHAR(64) NOT NULL,
     air_date VARCHAR(64),
     episode_code VARCHAR(64),
-    created_at VARCHAR(64) NOT NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TYPE type_character AS ENUM('Alive', 'Dead', 'unknown');
@@ -23,9 +23,9 @@ CREATE TABLE Character(
     specie VARCHAR(64),
     subspecie VARCHAR(64),
     gender type_gender,
-    created_at VARCHAR(64) NOT NULL,
     id_origin INT,
     id_last_location INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_origin) REFERENCES Location(ID),
     FOREIGN KEY (id_last_location) REFERENCES Location(ID)
 );
