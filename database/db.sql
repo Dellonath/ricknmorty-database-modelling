@@ -38,3 +38,15 @@ CREATE TABLE Appear(
     FOREIGN KEY (episode_id) REFERENCES Episode(ID),
     UNIQUE(character_id, episode_id)
 );
+
+CREATE ROLE superuser;
+GRANT ALL PRIVILEGES ON DATABASE "ricknmorty" TO superuser;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO superuser;
+
+CREATE USER master WITH PASSWORD 'senhamaster123';
+
+GRANT superuser TO master;
+
+CREATE USER usr WITH PASSWORD 'senhausr123';
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO usr;
+GRANT USAGE ON SCHEMA public TO usr;
