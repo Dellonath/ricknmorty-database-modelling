@@ -12,10 +12,10 @@ class EpisodeExtractor:
 
     def create_row(self, data):
         row = (   
-            data['id'],         # the id of the episode
-            data['name'],       # the name of the episode
-            data['air_date'],   # the air date of the episode
-            data['episode']     # the code of the episode
+            data['id'],                                           # the id of the episode
+            data['name'] if data['name'] else 'unknown',          # the name of the episode
+            data['air_date'] if data['air_date'] else 'unknown',  # the air date of the episode
+            data['episode'] if data['episode'] else 'unknown'     # the code of the episode
         )
 
         return row                                    

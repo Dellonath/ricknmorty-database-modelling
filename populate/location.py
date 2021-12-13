@@ -12,10 +12,10 @@ class LocationExtractor:
 
     def create_row(self, data):
         row = (
-            data['id'],         # the id of the location
-            data['name'],       # the name of the location
-            data['type'] if type(data['type']) != '' else 'unknown', # the type of the location
-            data['dimension']   # the dimension in which the location is located
+            data['id'],                                             # the id of the location
+            data['name'] if data['name'] else 'unknown',            # the name of the location
+            data['type'] if data['type'] else 'unknown',            # the type of the location
+            data['dimension'] if data['dimension'] else 'unknown'   # the dimension in which the location is located
         )
 
         return row                                    
