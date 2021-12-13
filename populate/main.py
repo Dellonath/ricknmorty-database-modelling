@@ -17,6 +17,9 @@ if __name__ == "__main__":
         next_page = location_extractor.data['info']['next']
         if next_page is not None: location_extractor = LocationExtractor(next_page)
         else: break
+        
+    # inserto to null values in id_last_location
+    location_extractor.insert_row([127, 'unknown', 'unknown', 'unknown'])
     
     episode_extractor = EpisodeExtractor('https://rickandmortyapi.com/api/episode?page=1')
     while episode_extractor.page:
