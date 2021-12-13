@@ -6,6 +6,7 @@ from appear import AppearExtractor
 if __name__ == "__main__":
     
     location_extractor = LocationExtractor('https://rickandmortyapi.com/api/location?page=1')
+    num_registers = location_extractor.data['info']['count'] + 1
     while location_extractor.page:
         print(location_extractor.page)
 
@@ -19,7 +20,7 @@ if __name__ == "__main__":
         else: break
         
     # inserto to null values in id_last_location
-    location_extractor.insert_row([127, 'unknown', 'unknown', 'unknown'])
+    location_extractor.insert_row([num_registers, 'unknown', 'unknown', 'unknown'])
     
     episode_extractor = EpisodeExtractor('https://rickandmortyapi.com/api/episode?page=1')
     while episode_extractor.page:
