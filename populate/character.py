@@ -18,8 +18,8 @@ class CharacterExtractor:
             data['species'],                                        # the species of the character  
             data['type'] if data['type'] != '' else None,           # the type or subspecies of the character
             data['gender'],                                         # the gender of the character ('Female', 'Male', 'Genderless' or 'unknown')
-            int(data['location']['url'].split('/')[-1]) if data['location']['url'].split('/')[-1] != '' else None,            # name and link to the character's last known location endpoint
             int(data['origin']['url'].split('/')[-1]) if data['origin']['url'].split('/')[-1] != '' else None,   # the name and link to the character's origin location
+            int(data['location']['url'].split('/')[-1]) if data['location']['url'].split('/')[-1] != '' else None, # name and link to the character's last known location endpoint
             [int(epId.split('/')[-1]) for epId in data['episode']]  # list of episodes in which this character appeared
 
         )
