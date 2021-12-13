@@ -26,8 +26,8 @@ CREATE TABLE Character(
     id_origin INT,
     id_last_location INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (id_origin) REFERENCES Location(ID),
-    FOREIGN KEY (id_last_location) REFERENCES Location(ID)
+    FOREIGN KEY (id_origin) REFERENCES Location(location_id),
+    FOREIGN KEY (id_last_location) REFERENCES Location(location_id)
 );
 
 CREATE TABLE Appear(
